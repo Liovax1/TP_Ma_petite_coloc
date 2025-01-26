@@ -13,7 +13,13 @@ routes.delete("/:id", authenticate, chargeController.deleteCharge);
 // Route pour obtenir l'historique des charges d'une colocation
 routes.get("/:colocationId", authenticate, chargeController.getChargesByColocation);
 
+// Route pour obtenir l'historique des paiements d'une colocation
+routes.get("/:colocationId/history", authenticate, chargeController.getPaymentHistory);
+
 // Route pour payer/rembourser un membre
 routes.post("/:id/pay", authenticate, chargeController.payMember);
+
+// Route pour payer une charge
+routes.post("/:id/pay", authenticate, chargeController.payCharge);
 
 export default routes;

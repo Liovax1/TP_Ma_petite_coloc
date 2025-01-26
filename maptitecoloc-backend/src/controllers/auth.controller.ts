@@ -37,10 +37,10 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       throw new Error('Invalid email or password');
     }
 
-    const token = authService.generateToken(user); // Utilisez 'user' directement
-    const refreshToken = authService.generateRefreshToken(user); // Utilisez 'user' directement
+    const token = await authService.login(user); // Modifiez cette ligne
+    const refreshToken = authService.generateRefreshToken(user);
 
-    res.status(200).json({ id: user._id, token, refreshToken }); // Ajoutez l'ID de l'utilisateur dans la réponse
+    res.status(200).json({ id: user._id, token, refreshToken });
   } catch (error: any) {
     res.status(400).json({ message: error.message });
   }

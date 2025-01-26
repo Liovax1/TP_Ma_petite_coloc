@@ -1,10 +1,16 @@
 import { ColocationModel, IColocation } from "../models/colocation.model";
 import { IUser } from "../models/user.model";
+import { LoggerService } from "../services/logger.service"; // Ajoutez cette ligne
+import mongoose from "mongoose"; // Ajoutez cette ligne
+
+const loggerService = new LoggerService(); // Ajoutez cette ligne
 
 export class ColocationService {
   async createColocation(data: Partial<IColocation>): Promise<IColocation> {
     const colocation = new ColocationModel({ ...data, members: [data.owner] }); // Ajoutez le créateur comme membre
-    return colocation.save();
+    const savedColocation: IColocation = await colocation.save(); // Typage explicite
+    await loggerService.logAction('create_colocation', (savedColocation._id as mongoose.Types.ObjectId).toString()); // Utilisez une assertion de type
+    return savedColocation;
   }
 
   async getColocationsByUser(userId: string): Promise<IColocation[]> {
@@ -20,19 +26,27 @@ export class ColocationService {
   }
 
   async addMember(colocationId: string, userId: string): Promise<IColocation | null> {
-    return ColocationModel.findByIdAndUpdate(
+    const updatedColocation = await ColocationModel.findByIdAndUpdate(
       colocationId,
       { $addToSet: { members: userId } },
       { new: true }
     ).populate('members');
+    if (updatedColocation) {
+      await loggerService.logAction('add_member', colocationId); // Convertir en string
+    }
+    return updatedColocation;
   }
 
   async removeMember(colocationId: string, userId: string): Promise<IColocation | null> {
-    return ColocationModel.findByIdAndUpdate(
+    const updatedColocation = await ColocationModel.findByIdAndUpdate(
       colocationId,
       { $pull: { members: userId } },
       { new: true }
     ).populate('members');
+    if (updatedColocation) {
+      await loggerService.logAction('remove_member', colocationId); // Convertir en string
+    }
+    return updatedColocation;
   }
 
   async transferOwnership(colocationId: string, newOwnerId: string): Promise<IColocation | null> {

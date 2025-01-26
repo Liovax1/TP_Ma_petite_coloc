@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { IUser } from '../models/user.model'; // Remplacer UserEntity par IUser
+import { LoggerService } from "../services/logger.service"; // Ajoutez cette ligne
+
+const loggerService = new LoggerService(); // Ajoutez cette ligne
 
 export class AuthService {
   generateToken(user: IUser): string { // Remplacer UserEntity par IUser
@@ -18,5 +21,11 @@ export class AuthService {
 
   verifyRefreshToken(token: string): any {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET as string);
+  }
+
+  async login(user: IUser): Promise<string> { // Ajoutez cette méthode
+    const token = this.generateToken(user);
+    await loggerService.logAction('login', user._id); // Ajoutez cette ligne
+    return token;
   }
 }

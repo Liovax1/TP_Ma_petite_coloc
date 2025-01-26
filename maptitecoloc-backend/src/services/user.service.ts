@@ -2,6 +2,9 @@ import { UserModel, IUser } from "../models/user.model";
 import { UserToCreateDTO } from "../types/user/dtos";
 import bcrypt from 'bcrypt';
 import mongoose from "mongoose";
+import { LoggerService } from "../services/logger.service"; // Ajoutez cette ligne
+
+const loggerService = new LoggerService(); // Ajoutez cette ligne
 
 export class UserService {
   async registerUser(userToCreate: UserToCreateDTO): Promise<IUser> {
@@ -19,6 +22,7 @@ export class UserService {
 
     // Sauvegarder l'utilisateur
     const savedUser = await createdUser.save();
+    await loggerService.logAction('register', savedUser._id); // Ajoutez cette ligne
 
     // Retourner l'utilisateur créé
     return savedUser;
@@ -33,6 +37,10 @@ export class UserService {
   }
 
   async deleteUser(id: string | mongoose.Types.ObjectId): Promise<IUser | null> { // Ajoutez cette méthode
-    return UserModel.findByIdAndDelete(id);
+    const deletedUser = await UserModel.findByIdAndDelete(id);
+    if (deletedUser) {
+      await loggerService.logAction('delete', deletedUser._id); // Ajoutez cette ligne
+    }
+    return deletedUser;
   }
 }
