@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ColocationService } from "../services/colocation.service";
 import { IUser } from "../models/user.model";
 import { IColocation } from "../models/colocation.model"; // Ajoutez cette ligne
+import { SuccessResponse, ErrorResponse } from "../utils/response.util"; // Importez les classes utilitaires
 
 const colocationService = new ColocationService();
 
@@ -12,28 +13,26 @@ interface CustomRequest extends Request {
 export const createColocation = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     if (!req.user || !req.user._id) {
-      res.status(400).json({ message: "User ID is missing" });
+      res.status(400).json(ErrorResponse.simple(400, "USER_ID_MISSING", "User ID is missing"));
       return;
     }
-    console.log("User ID:", req.user._id); // Ajoutez ce log pour vérifier l'ID de l'utilisateur
     const colocation: IColocation = await colocationService.createColocation({ ...req.body, owner: req.user._id });
-    res.status(201).json(colocation);
+    res.status(201).json(SuccessResponse.simple(colocation));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "COLOCATION_CREATION_FAILED", error.message));
   }
 };
 
 export const getColocationsByUser = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     if (!req.user || !req.user._id) {
-      res.status(400).json({ message: "User ID is missing" });
+      res.status(400).json(ErrorResponse.simple(400, "USER_ID_MISSING", "User ID is missing"));
       return;
     }
-    console.log("User ID:", req.user._id); // Ajoutez ce log pour vérifier l'ID de l'utilisateur
     const colocations = await colocationService.getColocationsByUser(req.user._id);
-    res.status(200).json(colocations);
+    res.status(200).json(SuccessResponse.list(colocations));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "COLOCATIONS_FETCH_FAILED", error.message));
   }
 };
 
@@ -41,12 +40,12 @@ export const getColocationById = async (req: Request, res: Response): Promise<vo
   try {
     const colocation = await colocationService.getColocationById(req.params.id);
     if (!colocation) {
-      res.status(404).json({ message: "Colocation not found" });
+      res.status(404).json(ErrorResponse.simple(404, "COLOCATION_NOT_FOUND", "Colocation not found"));
       return;
     }
-    res.status(200).json(colocation);
+    res.status(200).json(SuccessResponse.simple(colocation));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "COLOCATION_FETCH_FAILED", error.message));
   }
 };
 
@@ -54,73 +53,69 @@ export const deleteColocation = async (req: Request, res: Response): Promise<voi
   try {
     const colocation = await colocationService.deleteColocation(req.params.id);
     if (!colocation) {
-      res.status(404).json({ message: "Colocation not found" });
+      res.status(404).json(ErrorResponse.simple(404, "COLOCATION_NOT_FOUND", "Colocation not found"));
       return;
     }
-    res.status(200).json({ message: "Colocation deleted successfully" });
+    res.status(200).json(SuccessResponse.simple({ message: "Colocation deleted successfully" }));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "COLOCATION_DELETION_FAILED", error.message));
   }
 };
 
 export const addMember = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     if (!req.user || !req.user._id) {
-      res.status(400).json({ message: "User ID is missing" });
+      res.status(400).json(ErrorResponse.simple(400, "USER_ID_MISSING", "User ID is missing"));
       return;
     }
-    console.log("User ID:", req.user._id); // Ajoutez ce log pour vérifier l'ID de l'utilisateur
     const colocation = await colocationService.getColocationById(req.params.id);
     if (!colocation) {
-      res.status(404).json({ message: "Colocation not found" });
+      res.status(404).json(ErrorResponse.simple(404, "COLOCATION_NOT_FOUND", "Colocation not found"));
       return;
     }
-    console.log("Colocation owner ID:", colocation.owner); // Ajoutez ce log pour vérifier l'ID du propriétaire
     if (colocation.owner !== req.user._id.toString()) {
-      res.status(403).json({ message: "Only the owner can add members" });
+      res.status(403).json(ErrorResponse.simple(403, "FORBIDDEN", "Only the owner can add members"));
       return;
     }
     const updatedColocation = await colocationService.addMember(req.params.id, req.body.userId);
-    res.status(200).json(updatedColocation);
+    res.status(200).json(SuccessResponse.simple(updatedColocation));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "ADD_MEMBER_FAILED", error.message));
   }
 };
 
 export const removeMember = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     if (!req.user || !req.user._id) {
-      res.status(400).json({ message: "User ID is missing" });
+      res.status(400).json(ErrorResponse.simple(400, "USER_ID_MISSING", "User ID is missing"));
       return;
     }
-    console.log("User ID:", req.user._id); // Ajoutez ce log pour vérifier l'ID de l'utilisateur
     const colocation = await colocationService.getColocationById(req.params.id);
     if (!colocation || colocation.owner !== req.user._id.toString()) {
-      res.status(403).json({ message: "Only the owner can remove members" });
+      res.status(403).json(ErrorResponse.simple(403, "FORBIDDEN", "Only the owner can remove members"));
       return;
     }
     const updatedColocation = await colocationService.removeMember(req.params.id, req.body.userId);
-    res.status(200).json(updatedColocation);
+    res.status(200).json(SuccessResponse.simple(updatedColocation));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "REMOVE_MEMBER_FAILED", error.message));
   }
 };
 
 export const transferOwnership = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
     if (!req.user || !req.user._id) {
-      res.status(400).json({ message: "User ID is missing" });
+      res.status(400).json(ErrorResponse.simple(400, "USER_ID_MISSING", "User ID is missing"));
       return;
     }
-    console.log("User ID:", req.user._id); // Ajoutez ce log pour vérifier l'ID de l'utilisateur
     const colocation = await colocationService.getColocationById(req.params.id);
     if (!colocation || colocation.owner !== req.user._id.toString()) {
-      res.status(403).json({ message: "Only the owner can transfer ownership" });
+      res.status(403).json(ErrorResponse.simple(403, "FORBIDDEN", "Only the owner can transfer ownership"));
       return;
     }
     const updatedColocation = await colocationService.transferOwnership(req.params.id, req.body.newOwnerId);
-    res.status(200).json(updatedColocation);
+    res.status(200).json(SuccessResponse.simple(updatedColocation));
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(ErrorResponse.simple(400, "TRANSFER_OWNERSHIP_FAILED", error.message));
   }
 };

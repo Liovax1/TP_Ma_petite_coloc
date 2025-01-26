@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "fe644ec0-63fb-4c21-add5-0310acca0bc5",
+		"name": "MaPtitColoc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40971550"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3004/api/users/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstname\": \"Liova\",\n  \"lastname\": \"Boss\",\n  \"email\": \"liova.boss@test.com\",\n  \"password\": \"Password123\",\n  \"age\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstname\": \"Kilo\",\n  \"lastname\": \"Gramme\",\n  \"email\": \"kilo.gramme@test.com\",\n  \"password\": \"password123\",\n  \"age\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"liova.boss@test.com\",\n  \"password\": \"Password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"kilo.gramme@test.com\",\n  \"password\": \"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/refresh",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM4NTMxNjQxfQ.0EPSBjUz-vXJxX2HztUAPFhLTpJpUYSpoyrlKKlV4T4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/users/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/me",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"MaPtiteColoc\",\n  \"location\": \"Bordeaux\",\n  \"surface\": 96,\n  \"rooms\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/colocations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/colocations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations",
+						"6796adc0cb088134762826e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/members",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"6796a836cb088134762826db\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations",
+						"6796adc0cb088134762826e9",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/charges",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"description\": \"Loyer\",\n  \"amount\": 1000,\n  \"sharedBy\": [\n    { \"userId\": \"6796a32dcb088134762826d6\", \"amount\": 500 },\n    { \"userId\": \"6796a836cb088134762826db\", \"amount\": 500 }\n  ],\n  \"colocationId\": \"6796adc0cb088134762826e9\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/charges",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"charges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/charges/6796adc0cb088134762826e9",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/charges/6796adc0cb088134762826e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"charges",
+						"6796adc0cb088134762826e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/charges/6796adc0cb088134762826e9/history",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/charges/6796adc0cb088134762826e9/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"charges",
+						"6796adc0cb088134762826e9",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/charges/6796af8acb088134762826f7/pay",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 300\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/charges/6796af8acb088134762826f7/pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"charges",
+						"6796af8acb088134762826f7",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/charges/6796af8acb088134762826f7",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/charges/6796af8acb088134762826f7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"charges",
+						"6796af8acb088134762826f7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/transfer",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"newOwnerId\": \"6796a836cb088134762826db\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/transfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations",
+						"6796adc0cb088134762826e9",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/members",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhODM2Y2IwODgxMzQ3NjI4MjZkYiIsImVtYWlsIjoia2lsby5ncmFtbWVAdGVzdC5jb20iLCJpYXQiOjE3Mzc5MjkxMzMsImV4cCI6MTczNzkzMjczM30.Isk-TspTRpeqU3Il_GX0aUNGTA4_IuY_BZl3b9pte4s"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"6796a32dcb088134762826d6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations",
+						"6796adc0cb088134762826e9",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhODM2Y2IwODgxMzQ3NjI4MjZkYiIsImVtYWlsIjoia2lsby5ncmFtbWVAdGVzdC5jb20iLCJpYXQiOjE3Mzc5MjkxMzMsImV4cCI6MTczNzkzMjczM30.Isk-TspTRpeqU3Il_GX0aUNGTA4_IuY_BZl3b9pte4s"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/colocations/6796adc0cb088134762826e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"colocations",
+						"6796adc0cb088134762826e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3004/api/users/me",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTZhMzJkY2IwODgxMzQ3NjI4MjZkNiIsImVtYWlsIjoibGlvdmEuYm9zc0B0ZXN0LmNvbSIsImlhdCI6MTczNzkyNjg0MSwiZXhwIjoxNzM3OTMwNDQxfQ.7XkpKAialn31XBptJwrbA9eV3eyNnjNX45TQr71PlL8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3004/api/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3004",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
