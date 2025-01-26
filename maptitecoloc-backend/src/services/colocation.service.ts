@@ -9,7 +9,7 @@ export class ColocationService {
   async createColocation(data: Partial<IColocation>): Promise<IColocation> {
     const colocation = new ColocationModel({ ...data, members: [data.owner] }); // Ajoutez le créateur comme membre
     const savedColocation: IColocation = await colocation.save(); // Typage explicite
-    await loggerService.logAction('create_colocation', (savedColocation._id as mongoose.Types.ObjectId).toString()); // Utilisez une assertion de type
+    await loggerService.logAction('create_colocation', (savedColocation._id as mongoose.Types.ObjectId).toString(), data.owner as string); // Passez userId ici
     return savedColocation;
   }
 
@@ -32,7 +32,7 @@ export class ColocationService {
       { new: true }
     ).populate('members');
     if (updatedColocation) {
-      await loggerService.logAction('add_member', colocationId); // Convertir en string
+      await loggerService.logAction('add_member', colocationId, userId); // Passez userId ici
     }
     return updatedColocation;
   }
@@ -44,7 +44,7 @@ export class ColocationService {
       { new: true }
     ).populate('members');
     if (updatedColocation) {
-      await loggerService.logAction('remove_member', colocationId); // Convertir en string
+      await loggerService.logAction('remove_member', colocationId, userId); // Passez userId ici
     }
     return updatedColocation;
   }

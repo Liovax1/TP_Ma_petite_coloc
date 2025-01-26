@@ -25,7 +25,7 @@ export class AuthService {
 
   async login(user: IUser): Promise<string> { // Ajoutez cette méthode
     const token = this.generateToken(user);
-    await loggerService.logAction('login', user._id); // Ajoutez cette ligne
+    await loggerService.logAction('login', user._id.toString(), user._id.toString()); // Passez userId ici
     return token;
   }
 }

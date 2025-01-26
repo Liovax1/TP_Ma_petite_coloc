@@ -1,8 +1,8 @@
-import { LogModel } from "../models/log.model"; // Assurez-vous de créer ce modèle
+import { LogModel } from "../models/log.model";
 
 export class LoggerService {
-  async logAction(action: string, userId: string): Promise<void> {
-    const log = new LogModel({ action, userId, timestamp: new Date() });
+  async logAction(action: string, entityId: string, userId: string): Promise<void> { // Ajoutez userId comme paramètre
+    const log = new LogModel({ action, entityId, userId }); // Créez un nouveau log avec userId
     await log.save();
   }
 }

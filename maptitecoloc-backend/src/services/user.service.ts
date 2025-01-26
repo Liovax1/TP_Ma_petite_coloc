@@ -22,7 +22,7 @@ export class UserService {
 
     // Sauvegarder l'utilisateur
     const savedUser = await createdUser.save();
-    await loggerService.logAction('register', savedUser._id); // Ajoutez cette ligne
+    await loggerService.logAction('register', savedUser._id.toString(), savedUser._id.toString()); // Passez userId ici
 
     // Retourner l'utilisateur créé
     return savedUser;
@@ -39,7 +39,7 @@ export class UserService {
   async deleteUser(id: string | mongoose.Types.ObjectId): Promise<IUser | null> { // Ajoutez cette méthode
     const deletedUser = await UserModel.findByIdAndDelete(id);
     if (deletedUser) {
-      await loggerService.logAction('delete', deletedUser._id); // Ajoutez cette ligne
+      await loggerService.logAction('delete', deletedUser._id.toString(), deletedUser._id.toString()); // Passez userId ici
     }
     return deletedUser;
   }

@@ -1,21 +1,23 @@
 import { ChargeModel, ICharge } from "../models/charge.model";
-import { LoggerService } from "../services/logger.service"; // Ajoutez cette ligne
-import mongoose from "mongoose"; // Ajoutez cette ligne
+import { LoggerService } from "../services/logger.service";
+import mongoose from "mongoose";
 
-const loggerService = new LoggerService(); // Ajoutez cette ligne
+const loggerService = new LoggerService();
 
 export class ChargeService {
-  async addCharge(data: Partial<ICharge>): Promise<ICharge> {
+  async addCharge(data: Partial<ICharge>, userId?: string): Promise<ICharge> {
     const charge = new ChargeModel(data);
     const savedCharge: ICharge = await charge.save();
-    await loggerService.logAction('add_charge', (savedCharge._id as mongoose.Types.ObjectId).toString()); // Utilisez une assertion de type
+    if (userId) {
+      await loggerService.logAction('add_charge', (savedCharge._id as mongoose.Types.ObjectId).toString(), userId);
+    }
     return savedCharge;
   }
 
-  async deleteCharge(id: string): Promise<ICharge | null> {
+  async deleteCharge(id: string, userId?: string): Promise<ICharge | null> {
     const deletedCharge = await ChargeModel.findByIdAndDelete(id);
-    if (deletedCharge) {
-      await loggerService.logAction('delete_charge', (deletedCharge._id as mongoose.Types.ObjectId).toString()); // Utilisez une assertion de type
+    if (deletedCharge && userId) {
+      await loggerService.logAction('delete_charge', (deletedCharge._id as mongoose.Types.ObjectId).toString(), userId);
     }
     return deletedCharge;
   }
@@ -24,9 +26,11 @@ export class ChargeService {
     return ChargeModel.find({ colocationId }).populate('sharedBy.userId');
   }
 
-  async payMember(chargeId: string, memberId: string, amount: number): Promise<void> {
+  async payMember(chargeId: string, memberId: string, amount: number, userId?: string): Promise<void> {
     console.log(`Paying ${amount} to member ${memberId} for charge ${chargeId}`);
-    await loggerService.logAction('pay_member', chargeId); // Ajoutez cette ligne
+    if (userId) {
+      await loggerService.logAction('pay_member', chargeId, userId);
+    }
     // Logique de paiement à ajouter ici
   }
 
@@ -34,7 +38,7 @@ export class ChargeService {
     return ChargeModel.find({ colocationId }).populate('sharedBy.userId');
   }
 
-  async payCharge(chargeId: string, amount: number): Promise<ICharge | null> {
+  async payCharge(chargeId: string, amount: number, userId?: string): Promise<ICharge | null> {
     const charge = await ChargeModel.findById(chargeId);
     if (!charge) {
       throw new Error("Charge not found");
@@ -46,7 +50,9 @@ export class ChargeService {
     }
 
     await charge.save();
-    await loggerService.logAction('pay_charge', chargeId); // Ajoutez cette ligne
+    if (userId) {
+      await loggerService.logAction('pay_charge', chargeId, userId);
+    }
     return charge;
   }
 }

@@ -8,6 +8,7 @@ interface ICharge extends Document {
   date: Date;
   amountPaid: number; // Montant payé
   remainingAmount: number; // Montant restant à payer
+  userId: string; // Ajoutez userId
 }
 
 const chargeSchema = new Schema<ICharge>({
@@ -16,7 +17,8 @@ const chargeSchema = new Schema<ICharge>({
   sharedBy: [{ userId: { type: Schema.Types.String, ref: 'User' }, amount: { type: Number, required: true } }],
   colocationId: { type: Schema.Types.String, ref: 'Colocation', required: true },
   date: { type: Date, default: Date.now },
-  amountPaid: { type: Number, default: 0 } // Montant payé initialisé à 0
+  amountPaid: { type: Number, default: 0 }, // Montant payé initialisé à 0
+  userId: { type: Schema.Types.String, ref: 'User', required: true } // Ajoutez userId au schéma
 });
 
 chargeSchema.virtual('remainingAmount').get(function() {
