@@ -3,6 +3,15 @@
 ## Contexte :
 Cette application backend Node.js utilise TypeScript, Express et MongoDB pour gérer des colocations et des colocataires, avec des fonctionnalités d'authentification et d'autorisation basées sur Json Web Token (JWT).
 
+### Choix :
+
+J'ai choisi d'utiliser *Mongoose* pour la gestion de la base de données car je ne maitrise par encore TypeORM.
+Pour la gestion des erreurs j'ai utilisé un *middleware personnalisé*, et *MongoDB* pour la gestion des données car je voulais changer par rapport à d'habitude où j'utilise MySQL.
+J'ai également utilisé des classes utilitaires pour les réponses de succès et d'erreur à des fins de clarté et de simplicité, mais également pour la facilité de la maintenance.
+J'ai utilisé TypeScript car ce langage était au coeur du module.
+J'ai utilisé Json Web Token (JWT) pour la gestion de l'authentification et de l'autorisation à des fins de sécurité.
+J'ai utilisé Postman pour tester les API. PS : C'est un super outil que je ne connaissais pas avant et que j'utiliserai désormais très souvent.
+
 ### Prérequis : *Avoir Node.js et npm installés*
 Vérifier la version de Node.js avec `node -v`
 
