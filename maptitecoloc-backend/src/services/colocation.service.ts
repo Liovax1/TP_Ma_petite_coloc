@@ -1,15 +1,15 @@
 import { ColocationModel, IColocation } from "../models/colocation.model";
 import { IUser } from "../models/user.model";
-import { LoggerService } from "../services/logger.service"; // Ajoutez cette ligne
-import mongoose from "mongoose"; // Ajoutez cette ligne
+import { LoggerService } from "../services/logger.service";
+import mongoose from "mongoose";
 
-const loggerService = new LoggerService(); // Ajoutez cette ligne
+const loggerService = new LoggerService();
 
 export class ColocationService {
   async createColocation(data: Partial<IColocation>): Promise<IColocation> {
-    const colocation = new ColocationModel({ ...data, members: [data.owner] }); // Ajoutez le créateur comme membre
-    const savedColocation: IColocation = await colocation.save(); // Typage explicite
-    await loggerService.logAction('create_colocation', (savedColocation._id as mongoose.Types.ObjectId).toString(), data.owner as string); // Passez userId ici
+    const colocation = new ColocationModel({ ...data, members: [data.owner] }); // On ajoute le créateur comme membre
+    const savedColocation: IColocation = await colocation.save();
+    await loggerService.logAction('create_colocation', (savedColocation._id as mongoose.Types.ObjectId).toString(), data.owner as string);
     return savedColocation;
   }
 
@@ -32,7 +32,7 @@ export class ColocationService {
       { new: true }
     ).populate('members');
     if (updatedColocation) {
-      await loggerService.logAction('add_member', colocationId, userId); // Passez userId ici
+      await loggerService.logAction('add_member', colocationId, userId);
     }
     return updatedColocation;
   }
@@ -44,7 +44,7 @@ export class ColocationService {
       { new: true }
     ).populate('members');
     if (updatedColocation) {
-      await loggerService.logAction('remove_member', colocationId, userId); // Passez userId ici
+      await loggerService.logAction('remove_member', colocationId, userId);
     }
     return updatedColocation;
   }

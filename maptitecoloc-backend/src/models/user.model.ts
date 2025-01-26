@@ -7,7 +7,7 @@ interface IUser extends Document {
   email: string;
   password_hash: string;
   isActive: boolean;
-  age: number; // Ajoutez cette ligne
+  age: number;
 }
 
 const userSchema = new Schema<IUser>({
@@ -16,7 +16,7 @@ const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   password_hash: { type: String, required: true },
   isActive: { type: Boolean, default: true },
-  age: { type: Number, required: true, min: 18 } // Ajoutez cette ligne
+  age: { type: Number, required: true, min: 18 }
 });
 
 const UserModel = model<IUser>('User', userSchema);

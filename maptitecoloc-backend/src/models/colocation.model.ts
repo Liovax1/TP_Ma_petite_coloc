@@ -7,7 +7,7 @@ interface IColocation extends Document {
   rooms: number;
   owner: string;
   isActive: boolean;
-  members: string[]; // Array of user IDs
+  members: string[];
 }
 
 const colocationSchema = new Schema<IColocation>({

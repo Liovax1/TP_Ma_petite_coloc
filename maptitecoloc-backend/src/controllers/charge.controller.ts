@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ChargeService } from "../services/charge.service";
 import { IUser } from "../models/user.model";
-import { SuccessResponse, ErrorResponse } from "../utils/response.util"; // Importez les classes utilitaires
+import { SuccessResponse, ErrorResponse } from "../utils/response.util";
 
 const chargeService = new ChargeService();
 

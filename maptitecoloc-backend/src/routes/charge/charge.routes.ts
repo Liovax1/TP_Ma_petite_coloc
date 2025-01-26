@@ -16,7 +16,7 @@ routes.get("/:colocationId", authenticate, chargeController.getChargesByColocati
 // Route pour obtenir l'historique des paiements d'une colocation
 routes.get("/:colocationId/history", authenticate, chargeController.getPaymentHistory);
 
-// Route pour payer/rembourser un membre
+// Route pour payer/rembourser un membre mais à retirer car plus besoin
 routes.post("/:id/payMember", authenticate, chargeController.payMember);
 
 // Route pour payer une charge

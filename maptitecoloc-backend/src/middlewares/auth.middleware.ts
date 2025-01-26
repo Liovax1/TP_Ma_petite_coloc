@@ -26,13 +26,13 @@ export const authenticate = (req: CustomRequest, res: Response, next: NextFuncti
   }
 
   try {
-    console.log("Received token:", token); // Ajoutez ce log pour vérifier le token reçu
+    console.log("Received token:", token);
 
     const decoded = authService.verifyToken(token);
-    console.log("Decoded token:", decoded); // Ajoutez ce log pour vérifier le token décodé
+    console.log("Decoded token:", decoded);
 
     req.user = decoded as IUser;
-    req.user._id = decoded.id; // Assignez correctement l'ID de l'utilisateur
+    req.user._id = decoded.id;
     next();
   } catch (error) {
     res.status(401).json({ message: 'Invalid token' });

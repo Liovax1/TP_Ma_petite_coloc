@@ -5,7 +5,7 @@ import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { UserToCreateDTO } from '../types/user/dtos';
 import bcrypt from 'bcrypt';
-import { IUser } from '../models/user.model'; // Ajoutez cette ligne
+import { IUser } from '../models/user.model';
 
 const authService = new AuthService();
 const userService = new UserService();
@@ -20,10 +20,10 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     }
 
     const user = await userService.registerUser(userToCreateDTO);
-    const token = authService.generateToken(user); // Utilisez 'user' directement
-    const refreshToken = authService.generateRefreshToken(user); // Utilisez 'user' directement
+    const token = authService.generateToken(user);
+    const refreshToken = authService.generateRefreshToken(user);
 
-    res.status(201).json({ id: user._id, token, refreshToken }); // Ajoutez l'ID de l'utilisateur dans la réponse
+    res.status(201).json({ id: user._id, token, refreshToken });
   } catch (error: any) {
     res.status(400).json({ message: error.message });
   }
@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       throw new Error('Invalid email or password');
     }
 
-    const token = await authService.login(user); // Modifiez cette ligne
+    const token = await authService.login(user);
     const refreshToken = authService.generateRefreshToken(user);
 
     res.status(200).json({ id: user._id, token, refreshToken });
@@ -55,8 +55,8 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
       throw new Error('Invalid refresh token');
     }
 
-    const newToken = authService.generateToken(user); // Utilisez 'user' directement
-    const newRefreshToken = authService.generateRefreshToken(user); // Utilisez 'user' directement
+    const newToken = authService.generateToken(user);
+    const newRefreshToken = authService.generateRefreshToken(user);
 
     res.status(200).json({ token: newToken, refreshToken: newRefreshToken });
   } catch (error: any) {

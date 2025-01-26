@@ -1,3 +1,4 @@
+// Pour la gestion des réponses
 export class SuccessResponse {
   static simple(data: any) {
     return data;

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { ColocationService } from "../services/colocation.service";
 import { IUser } from "../models/user.model";
-import { IColocation } from "../models/colocation.model"; // Ajoutez cette ligne
-import { SuccessResponse, ErrorResponse } from "../utils/response.util"; // Importez les classes utilitaires
+import { IColocation } from "../models/colocation.model";
+import { SuccessResponse, ErrorResponse } from "../utils/response.util";
 
 const colocationService = new ColocationService();
 

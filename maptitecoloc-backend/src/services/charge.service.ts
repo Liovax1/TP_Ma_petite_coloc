@@ -31,7 +31,6 @@ export class ChargeService {
     if (userId) {
       await loggerService.logAction('pay_member', chargeId, userId);
     }
-    // Logique de paiement à ajouter ici
   }
 
   async getPaymentHistory(colocationId: string): Promise<ICharge[]> {

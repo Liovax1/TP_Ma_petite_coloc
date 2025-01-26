@@ -5,7 +5,7 @@ import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { UserPresenter } from "../types/user/presenters";
 import { IUser } from "../models/user.model";
-import { SuccessResponse, ErrorResponse } from "../utils/response.util"; // Importez les classes utilitaires
+import { SuccessResponse, ErrorResponse } from "../utils/response.util";
 
 const userService = new UserService();
 
